@@ -1,0 +1,228 @@
+LINK TO JSFIDDLE: https://jsfiddle.net/2cfyhtkj/
+
+FULL CODE:
+
+import * as THREE from "https://unpkg.com/three@0.126.1/build/three.module.js"
+
+// import Orbit controls
+import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.121.1/examples/jsm/controls/OrbitControls.js';
+
+//create renderer
+const renderer = new THREE.WebGLRenderer();
+renderer.setSize( window.innerWidth, window.innerHeight );
+document.body.appendChild( renderer.domElement );
+
+//create camera
+const camera = new THREE.PerspectiveCamera( 90, window.innerWidth / window.innerHeight, 1, 1000 );
+camera.position.set( -100, 700, 350 );
+camera.lookAt(0,400,-30);
+
+//create scene
+const scene = new THREE.Scene();
+
+
+//triangle face 1
+const tf1Geometry = new THREE.BufferGeometry();
+
+const tf1Points = new Float32Array( [
+- 17.0, 500.0, 0.0,   
+17.0, 500.0, 0.0,
+0.0, 555.0, -17.0, 
+-17.0, 500.0, 0.0,] );
+
+
+const indicesT1 = [
+	0, 1, 2,
+];
+tf1Geometry.setIndex( indicesT1 );
+tf1Geometry.setAttribute('position', new THREE.Float32BufferAttribute(tf1Points, 3));
+
+//hexadecimal color: green
+const tf1Material = new THREE.MeshBasicMaterial( { color: 0xfff00 } );
+
+
+const tFace1 = new THREE.Mesh( tf1Geometry, tf1Material);
+
+
+//triangle face 2
+const tf2Geometry = new THREE.BufferGeometry();
+
+const tf2Points = new Float32Array( [
+- 17.0, 500.0, 0.0,   
+-17.0, 500.0, -34.0,
+0.0, 555.0, -17.0, 
+-17.0, 500.0, 0.0,] );
+
+
+const indicesT2 = [
+	0, 1, 2,
+];
+tf2Geometry.setIndex( indicesT2 );
+tf2Geometry.setAttribute('position', new THREE.Float32BufferAttribute(tf2Points, 3));
+
+//RGB color: purple/magenta
+const tf2Material = new THREE.MeshBasicMaterial( { color: new THREE.Color(176, 0, 255), side: THREE.BackSide} );
+
+const tFace2 = new THREE.Mesh( tf2Geometry, tf2Material);
+
+//triangle face 3
+const tf3Geometry = new THREE.BufferGeometry();
+
+const tf3Points = new Float32Array( [
+- 17.0, 500.0, -34.0,   
+17.0, 500.0, -34.0,
+0.0, 555.0, -17.0, 
+-17.0, 500.0, -34.0,] );
+
+
+const indicesT3 = [
+	0, 1, 2,
+];
+tf3Geometry.setIndex( indicesT3 );
+tf3Geometry.setAttribute('position', new THREE.Float32BufferAttribute(tf3Points, 3));
+
+
+//RGB color: orange
+const tf3Material = new THREE.MeshBasicMaterial( { color: new THREE.Color(1, 0.5, 0), side: THREE.BackSide } ); 
+
+const tFace3 = new THREE.Mesh( tf3Geometry, tf3Material);
+
+
+//triangle face 4
+const tf4Geometry = new THREE.BufferGeometry();
+
+const tf4Points = new Float32Array( [
+17.0, 500.0, -34.0,   
+17.0, 500.0, 0.0,
+0.0, 555.0, -17.0, 
+17.0, 500.0, -34.0,] );
+
+
+const indicesT4 = [
+	0, 1, 2,
+];
+tf4Geometry.setIndex( indicesT4 );
+tf4Geometry.setAttribute('position', new THREE.Float32BufferAttribute(tf4Points, 3));
+
+//color-CSS string: yellow
+const tf4Material = new THREE.MeshBasicMaterial( { color: 'yellow', side: THREE.BackSide } );
+
+const tFace4 = new THREE.Mesh( tf4Geometry, tf4Material);
+
+//rectangle face 1
+const rf1Geometry = new THREE.BufferGeometry();
+
+const rf1Points = new Float32Array( [
+-17, 500, 0, 
+-27.5, 0, 0, 
+27.5, 0, 0, 
+17, 500, 0, 
+]);
+
+const indicesR1 = [
+	0, 1, 2,
+  2, 3, 0,
+];
+rf1Geometry.setIndex( indicesR1 );
+rf1Geometry.setAttribute('position', new THREE.Float32BufferAttribute(rf1Points, 3));
+
+//CSS string: blue
+const rf1Material = new THREE.MeshBasicMaterial( { color: 'blue' } );
+const rFace1 = new THREE.Mesh( rf1Geometry, rf1Material );
+
+//rectangle face 2
+const rf2Geometry = new THREE.BufferGeometry();
+
+const rf2Points = new Float32Array( [
+-17, 500, 0, 
+-27.5, 0, 0, 
+-27.5, 0, -55, 
+-17, 500, -34, 
+]);
+
+const indicesR2 = [
+	0, 1, 2,
+  2, 3, 0,
+];
+rf2Geometry.setIndex( indicesR2 );
+rf2Geometry.setAttribute('position', new THREE.Float32BufferAttribute(rf2Points, 3));
+
+//hexidecimal color: red
+const rf2Material = new THREE.MeshBasicMaterial( { color: 0xfff0000, side: THREE.BackSide });
+const rFace2 = new THREE.Mesh( rf2Geometry, rf2Material );
+
+//rectangle face 3
+const rf3Geometry = new THREE.BufferGeometry();
+
+const rf3Points = new Float32Array( [
+-17, 500, -34, 
+-27.5, 0, -55, 
+27.5, 0, -55, 
+17, 500, -34, 
+]);
+
+const indicesR3 = [
+	0, 1, 2,
+  2, 3, 0,
+];
+rf3Geometry.setIndex( indicesR3 );
+rf3Geometry.setAttribute('position', new THREE.Float32BufferAttribute(rf3Points, 3));
+
+//rgb string: brown
+const rf3Material = new THREE.MeshBasicMaterial( { color: "rgb(150, 100, 100)", side: THREE.BackSide } );
+const rFace3 = new THREE.Mesh( rf3Geometry, rf3Material );
+
+//rectangle face 4
+const rf4Geometry = new THREE.BufferGeometry();
+
+const rf4Points = new Float32Array( [
+17, 500, -34, 
+27.5, 0, -55, 
+27.5, 0, 0, 
+17, 500, 0, 
+]);
+
+const indicesR4 = [
+	0, 1, 2,
+  2, 3, 0,
+];
+rf4Geometry.setIndex( indicesR4 );
+rf4Geometry.setAttribute('position', new THREE.Float32BufferAttribute(rf4Points, 3));
+
+//hexadecimal: light blue
+const rf4Material = new THREE.MeshBasicMaterial( { color: 0x00ffff, side: THREE.BackSide } );
+const rFace4 = new THREE.Mesh( rf4Geometry, rf4Material );
+
+//add objects to scene
+scene.add(tFace1);
+scene.add(tFace2);
+scene.add(tFace3);
+scene.add(tFace4);
+
+scene.add(rFace1);
+scene.add(rFace2);
+scene.add(rFace3);
+scene.add(rFace4);
+
+//animate it
+function animate() {
+  renderer.render(scene, camera)
+
+//make it rotate on y-axis
+tFace1.rotation.y+=0.005;
+tFace2.rotation.y+=0.005;
+tFace3.rotation.y+=0.005;
+tFace4.rotation.y+=0.005;
+rFace1.rotation.y+=0.005;
+rFace2.rotation.y+=0.005;
+rFace3.rotation.y+=0.005;
+rFace4.rotation.y+=0.005;
+ 
+  requestAnimationFrame(animate);
+
+}
+
+var controls = new OrbitControls (camera, renderer.domElement);
+
+
+animate();
