@@ -1,4 +1,4 @@
-NOTE: The visualization is small, and you can see it better when you zoom in. I believe it is so small because of the limited number of (x,y) inputs which make the function equal close to zero. 
+NOTE: The visualization is small, and you can see it better when you zoom in. I believe it is so small because of the limited number of (x,y) inputs which make the implicit equation equal close to zero. 
 If only the points which made the function equal exactly zero were plotted, there would be almost nothing or nothing there.
 
 CODE:
